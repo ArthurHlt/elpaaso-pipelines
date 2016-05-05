@@ -9,6 +9,8 @@ if [ $? -ne 0 ]; then
 fi
 unzip "mattermost-cf.zip" -d "$BASEDIR"
 service_name="mysql-$app_name"
+cf login --skip-ssl-validation -a "$cf_api" -u "$cf_username" -p "$cf_password"
+cf target -o "$cf_organization" -s "$cf_space"
 cf s | grep $service_name > /dev/null
 
 if [ $? -ne 0 ]; then

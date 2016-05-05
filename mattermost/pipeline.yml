@@ -72,6 +72,11 @@ jobs:
         params:
           app_name: {{app-name}}
           mattermost_config: {{mattermost-config}}
+          cf_api: {{cf-api}}
+          cf_username: {{cf-username}}
+          cf_password: {{cf-password}}
+          cf_organization: {{cf-org}}
+          cf_space: {{cf-space}}
       - put: deploy-mattermost
         params:
           manifest: deployment/mattermost/manifest.yml
