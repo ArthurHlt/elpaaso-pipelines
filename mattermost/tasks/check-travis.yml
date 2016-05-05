@@ -8,6 +8,7 @@ image_resource:
     tag: 'base'
 
 inputs:
+- name: elpaaso-pipelines
 - name: mattermost-integrator-travis
 - name: mattermost-integrator-github
 

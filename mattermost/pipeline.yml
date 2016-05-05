@@ -68,6 +68,7 @@ jobs:
       - get: mattermost-integrator-github
         trigger: true
         passed: [mattermost-release]
+      - get: elpaaso-pipelines
       - get: mattermost-integrator-travis
       - task: wait-build-from-travis
         file: elpaaso-pipelines/mattermost/tasks/check-travis.yml
