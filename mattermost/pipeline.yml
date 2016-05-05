@@ -47,6 +47,6 @@ jobs:
           cf_space: {{cf-space}}
       - put: mattermost-integrator-github
         params:
-          tag: mattermost-integrator-github/tag_to_release
-          name: mattermost-integrator-github/name_of_release
+          tag: release-info/tag_to_release
+          name: release-info/name_of_release
           tag_prefix: v

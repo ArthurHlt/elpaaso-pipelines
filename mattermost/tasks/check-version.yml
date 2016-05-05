@@ -12,7 +12,7 @@ inputs:
 - name: mattermost-integrator-github
 
 outputs:
-- name: mattermost-integrator-github
+- name: release-info
 
 run:
   path: elpaaso-pipelines/mattermost/tasks/check-version.sh
