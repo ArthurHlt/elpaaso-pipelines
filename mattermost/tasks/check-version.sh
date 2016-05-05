@@ -17,4 +17,5 @@ if [ $? -ne 0 ]; then
 fi
 echo "$semver" > "$CW/release-info/tag_to_release"
 echo "Mattermost $semver on Cloud Foundry" > "$CW/release-info/name_of_release"
+echo "Mattermost $semver on Cloud Foundry" > "$CW/release-info/body"
 exit 0

@@ -1,10 +1,22 @@
+resource_types:
+- name: travis
+  type: docker-image
+  source:
+    repository: orangeopensource/travis-resource-image
+
 resources:
+  - name: mattermost-integrator-travis
+    type: travis
+    source:
+      repository: cloudfoundry-community/mattermost-cf-integrator
+      branch-regex: v.*
+      github-token: {{github-token}}
   - name: 5m-during-midnight-hour
     type: time
     source:
-      interval: 5s
-      #start: 12:00 AM -0700
-      #stop: 1:00 AM -0700
+      interval: 50m
+      start: 12:00 AM -0700
+      stop: 1:00 AM -0700
   - name: mattermost-integrator-github
     type: github-release
     source:
@@ -49,4 +61,19 @@ jobs:
         params:
           tag: release-info/tag_to_release
           name: release-info/name_of_release
+          body: release-info/body
           tag_prefix: v
+  - name: wait-travis-build
+    plan:
+      - get: mattermost-integrator-travis
+        trigger: true
+        passed: [mattermost-release]
+      - task: wait-build-from-travis
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ubuntu}
+          run:
+            path: echo
+            args: ["build finish!"]
