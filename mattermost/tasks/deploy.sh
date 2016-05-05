@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -x
+sleep 120
 BASEDIR="$PWD/deployment"
 version_github=$(head -n 1 "$CW/mattermost-integrator-github/tag")
 curl -L https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip -o "$BASEDIR/mattermost-cf.zip"
