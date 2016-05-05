@@ -23,11 +23,6 @@ resources:
       user: cloudfoundry-community
       repository: mattermost-cf-integrator
       access_token: {{github-token}}
-  - name: mattermost-elpaaso-git
-    type: git
-    source:
-      uri: {{mattermost-elpaaso-url}}
-      branch: master
   - name: elpaaso-pipelines
     type: git
     source:
@@ -69,7 +64,6 @@ jobs:
   - name: deploy-to-cf
     plan:
       - get: elpaaso-pipelines
-      - get: mattermost-elpaaso-git
       - get: mattermost-integrator-github
       - get: mattermost-integrator-travis
         trigger: true

@@ -9,7 +9,6 @@ image_resource:
 
 inputs:
 - name: elpaaso-pipelines
-- name: mattermost-elpaaso-git
 - name: mattermost-integrator-github
 
 outputs:
