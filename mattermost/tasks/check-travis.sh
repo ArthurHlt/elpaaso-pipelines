@@ -9,3 +9,4 @@ if [ "$version_travis" -ne "$version_github" ]; then
     echo "it's not waiting the good job, erroring it to wait the good one."
     exit 2
 fi
+exit 0
