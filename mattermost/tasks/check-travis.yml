@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: arthurhlt/elpaaso-pipelines
+    tag: 'base'
+
+inputs:
+- name: mattermost-integrator-travis
+- name: mattermost-integrator-github
+
+run:
+  path: elpaaso-pipelines/mattermost/tasks/check-travis.sh
