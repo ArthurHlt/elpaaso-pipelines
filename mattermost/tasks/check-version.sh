@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-
+set +x
 CW=$PWD
 
 actual_version=$(curl -s http://www.mattermost.org/download/ | pup '.entry-content h2' | grep Mattermost | awk '{print $4}')
 current_version=$(head -n 1 "$CW/mattermost-integrator-github/tag")
 if [ "$actual_version" = "$current_version" ]; then
+    echo "You should don't care about this error."
     echo "The version $actual_version already exists."
     exit 1
 fi
