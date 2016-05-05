@@ -3,12 +3,12 @@ set -x
 sleep 120
 BASEDIR="$PWD/deployment"
 version_github=$(head -n 1 "$CW/mattermost-integrator-github/tag")
-curl -L https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip -o "$BASEDIR/mattermost-cf.zip"
+wget https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip
 if [ $? -ne 0 ]; then
     echo "can't found the version $version_github, try: https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip "
 	exit 1
 fi
-unzip "$BASEDIR/mattermost-cf.zip" -d "$BASEDIR"
+unzip "mattermost-cf.zip" -d "$BASEDIR"
 service_name="mysql-$app_name"
 cf s | grep $service_name > /dev/null
 

@@ -59,6 +59,7 @@ jobs:
         passed: [mattermost-release]
       - get: elpaaso-pipelines
       - get: mattermost-integrator-travis
+        trigger: true
       - task: wait-build-from-travis
         file: elpaaso-pipelines/mattermost/tasks/check-travis.yml
   - name: deploy-to-cf
