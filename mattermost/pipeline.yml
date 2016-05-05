@@ -33,7 +33,7 @@ resources:
     source:
       uri: https://github.com/ArthurHlt/elpaaso-pipelines.git
       branch: master
-  - name: resource-deploy-web-app
+  - name: deploy-mattermost
     type: cf
     source:
       api: {{cf-api}}
@@ -51,12 +51,6 @@ jobs:
       - get: elpaaso-pipelines
       - task: release-new-version
         file: elpaaso-pipelines/mattermost/tasks/check-version.yml
-        params:
-          cf_api: {{cf-api}}
-          cf_username: {{cf-username}}
-          cf_password: {{cf-password}}
-          cf_organization: {{cf-org}}
-          cf_space: {{cf-space}}
       - put: mattermost-integrator-github
         params:
           tag: release-info/tag_to_release
@@ -72,3 +66,20 @@ jobs:
       - get: mattermost-integrator-travis
       - task: wait-build-from-travis
         file: elpaaso-pipelines/mattermost/tasks/check-travis.yml
+  - name: wait-travis-build
+    plan:
+      - get: elpaaso-pipelines
+      - get: mattermost-elpaaso-git
+      - get: mattermost-integrator-github
+      - get: mattermost-integrator-travis
+        trigger: true
+        passed: [wait-travis-build]
+      - task: deploy
+        file: elpaaso-pipelines/mattermost/tasks/deploy.yml
+        params:
+          app_name: {{app-name}}
+      - put: deploy-mattermost
+        params:
+          manifest: deployment/mattermost/manifest.yml
+          path: deployment/mattermost/
+          current_app_name: {{app-name}}

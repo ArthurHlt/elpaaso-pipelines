@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: arthurhlt/elpaaso-pipelines
+    tag: 'base'
+
+inputs:
+- name: elpaaso-pipelines
+- name: mattermost-elpaaso-git
+- name: mattermost-integrator-github
+
+outputs:
+- name: deployment
+
+run:
+  path: elpaaso-pipelines/mattermost/tasks/deploy.sh
