@@ -55,8 +55,6 @@ jobs:
   - name: wait-travis-build
     plan:
       - get: mattermost-integrator-github
-        trigger: true
-        passed: [mattermost-release]
       - get: elpaaso-pipelines
       - get: mattermost-integrator-travis
         trigger: true

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -x
-sleep 120
 BASEDIR="$PWD/deployment"
-version_github=$(head -n 1 "$CW/mattermost-integrator-github/tag")
+version_github=$(head -n 1 "$PWD/mattermost-integrator-github/tag")
 wget https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip
 if [ $? -ne 0 ]; then
     echo "can't found the version $version_github, try: https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip "
