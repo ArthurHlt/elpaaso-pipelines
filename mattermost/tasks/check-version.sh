@@ -2,7 +2,7 @@
 
 CW=$PWD
 
-wget https://github.com/ericchiang/pup/releases/download/v0.3.9/pup_linux_amd64.zip
+curl https://github.com/ericchiang/pup/releases/download/v0.3.9/pup_linux_amd64.zip -o pup_linux_amd64.zip
 unzip pup_linux_amd64.zip
 chmod +x pup
 actual_version=$(curl -s http://www.mattermost.org/download/ | ./pup '.entry-content h2' | grep Mattermost | awk '{print $4}')
