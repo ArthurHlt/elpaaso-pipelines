@@ -17,8 +17,7 @@ if [ $? -ne 0 ]; then
 		exit 1
 	fi
 fi
-cat "$PWD/mattermost-elpaaso-git/config.json" | jq '.SqlSettings.DriverName = "mysql"' | jq '.SqlSettings.DataSource = "mmuser:mostest@tcp(dockerhost:3306)/mattermost_test?charset=utf8mb4,utf8"' > "$PWD/mattermost-elpaaso-git/config.json"
-cp "$PWD/mattermost-elpaaso-git/config.json" "$BASEDIR/mattermost/config"
+echo "$mattermost_config" > "$BASEDIR/mattermost/config/config.json"
 cd "$BASEDIR/mattermost"
 cat <<EOT > "manifest.yml"
 ---

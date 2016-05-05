@@ -66,7 +66,7 @@ jobs:
       - get: mattermost-integrator-travis
       - task: wait-build-from-travis
         file: elpaaso-pipelines/mattermost/tasks/check-travis.yml
-  - name: wait-travis-build
+  - name: deploy-to-cf
     plan:
       - get: elpaaso-pipelines
       - get: mattermost-elpaaso-git
@@ -78,6 +78,7 @@ jobs:
         file: elpaaso-pipelines/mattermost/tasks/deploy.yml
         params:
           app_name: {{app-name}}
+          mattermost_config: {{mattermost-config}}
       - put: deploy-mattermost
         params:
           manifest: deployment/mattermost/manifest.yml
