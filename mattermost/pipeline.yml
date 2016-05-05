@@ -1,0 +1,52 @@
+resources:
+  - name: 5m-during-midnight-hour
+    type: time
+    source:
+      interval: 5s
+      #start: 12:00 AM -0700
+      #stop: 1:00 AM -0700
+  - name: mattermost-integrator-github
+    type: github-release
+    source:
+      user: cloudfoundry-community
+      repository: mattermost-cf-integrator
+      access_token: {{github-token}}
+  - name: mattermost-elpaaso-git
+    type: git
+    source:
+      uri: {{mattermost-elpaaso-url}}
+      branch: master
+  - name: elpaaso-pipelines
+    type: git
+    source:
+      uri: https://github.com/ArthurHlt/elpaaso-pipelines.git
+      branch: master
+  - name: resource-deploy-web-app
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-org}}
+      space: {{cf-space}}
+      skip_cert_check: true
+jobs:
+  - name: mattermost-release
+    plan:
+      - get: 5m-during-midnight-hour
+        trigger: true
+      - get: mattermost-integrator-github
+      - get: elpaaso-pipelines
+      - task: release-new-version
+        file: elpaaso-pipelines/mattermost/tasks/check-version.yml
+        params:
+          cf_api: {{cf-api}}
+          cf_username: {{cf-username}}
+          cf_password: {{cf-password}}
+          cf_organization: {{cf-org}}
+          cf_space: {{cf-space}}
+      - put:
+        params:
+          tag: mattermost-integrator-github/tag_to_release
+          name: mattermost-integrator-github/name_of_release
+          tag_prefix: v
