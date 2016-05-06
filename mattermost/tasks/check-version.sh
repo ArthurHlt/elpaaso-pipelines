@@ -17,9 +17,9 @@ if [ $? -ne 0 ]; then
 fi
 echo "$semver" | grep -Eq "^$accepted_version$"
 if [ $? -ne 0 ]; then
-    notifslack --url $slack_url -c $slack_channel -u $slack_username -i $slack_icon \
-        "[mattermost] A new version of mattermost came but this version ($semver) is not" \
-        "accepted, please review this new version and change the param \`accepted_version\` in pipeline"
+    message="[mattermost] A new version of mattermost came but this version ($semver) is not accepted, please review this new version on mattermost.org and change the param \`accepted_version\` in pipeline when ready."
+    echo "$message"
+    notifslack --url $slack_url -c $slack_channel -u $slack_username -i $slack_icon "$message"
     exit 1
 fi
 echo "$semver" > "$CW/release-info/tag_to_release"
