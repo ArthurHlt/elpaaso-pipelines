@@ -5,6 +5,10 @@ resource_types:
     repository: orangeopensource/travis-resource-image
 
 resources:
+  - name: slack-alert
+    type: slack-notification
+    source:
+      url: {{slack-url}}
   - name: mattermost-integrator-travis
     type: travis
     source:
@@ -88,3 +92,11 @@ jobs:
           manifest: deployment/mattermost/manifest.yml
           path: deployment/mattermost/
           current_app_name: {{app-name}}
+      - put: slack-alert
+        params:
+          text_file: deployment/tag
+          icon_url: https://pbs.twimg.com/profile_images/714899641628753920/3C8UrVPf.jpg
+          text: |
+            @channel Hey, I have just deployed a new version of our mattermost, we are on the $TEXT_FILE_CONTENT.
+          channel: "#town-square"
+          username: Concourse

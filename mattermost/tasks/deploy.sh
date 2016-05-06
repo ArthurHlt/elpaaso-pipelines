@@ -2,6 +2,7 @@
 
 BASEDIR="$PWD/deployment"
 version_github=$(head -n 1 "$PWD/mattermost-integrator-github/tag")
+echo "$version_github" > "$PWD/deployment/tag"
 wget https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip
 if [ $? -ne 0 ]; then
     echo "can't found the version $version_github, try: https://github.com/cloudfoundry-community/mattermost-cf-integrator/releases/download/$version_github/mattermost-cf.zip "
