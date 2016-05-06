@@ -3,6 +3,10 @@ resource_types:
   type: docker-image
   source:
     repository: orangeopensource/travis-resource-image
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
 
 resources:
   - name: slack-alert
