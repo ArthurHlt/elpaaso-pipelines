@@ -52,7 +52,7 @@ jobs:
           name: release-info/name_of_release
           body: release-info/body
           tag_prefix: v
-          accepted_version: "[0-2]{1}\.[0-9]{1,2}\.[0-9]{1,2}"
+          accepted_version: "[0-2]{1}\\.[0-9]{1,2}\\.[0-9]{1,2}"
           slack_url: {{slack-url}}
           slack_channel: {{slack-channel}}
           slack_username: Concourse
