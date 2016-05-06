@@ -40,7 +40,7 @@ resources:
 jobs:
   - name: mattermost-release
     plan:
-      #- get: 5m-during-midnight-hour
+      #- get: 50m-during-midnight-hour
       #  trigger: true
       - get: mattermost-integrator-github
       - get: elpaaso-pipelines
@@ -52,6 +52,11 @@ jobs:
           name: release-info/name_of_release
           body: release-info/body
           tag_prefix: v
+          accepted_version: "[0-2]{1}\.[0-9]{1,2}\.[0-9]{1,2}"
+          slack_url: {{slack-url}}
+          slack_channel: {{slack-channel}}
+          slack_username: Concourse
+          slack_icon: "https://pbs.twimg.com/profile_images/714899641628753920/3C8UrVPf.jpg"
   - name: wait-travis-build
     plan:
       - get: mattermost-integrator-github

@@ -12,7 +12,14 @@ fi
 semver=$(echo "$actual_version" | sed 's/v//g')
 echo "$semver" | grep -Eq "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}$"
 if [ $? -ne 0 ]; then
-    echo "Parsed version do not follow semantical versionning, check http://www.mattermost.org/download page and fix the parsing"
+    echo "Parsed version do not follow semantic versioning, check http://www.mattermost.org/download page and fix the parsing"
+    exit 1
+fi
+echo "$semver" | grep -Eq "^$accepted_version$"
+if [ $? -ne 0 ]; then
+    notifslack --url $slack_url -c $slack_channel -u $slack_username -i $slack_icon \
+        "[mattermost] A new version of mattermost came but this version ($semver) is not" \
+        "accepted, please review this new version and change the param \`accepted_version\` in pipeline"
     exit 1
 fi
 echo "$semver" > "$CW/release-info/tag_to_release"
