@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
 CW=$PWD
 version_travis=$(cat "$CW/mattermost-integrator-travis/build-info.json" | jq -r '.commits[0].branch')
 version_github=$(head -n 1 "$CW/mattermost-integrator-github/tag")

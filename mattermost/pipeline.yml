@@ -40,8 +40,8 @@ resources:
 jobs:
   - name: mattermost-release
     plan:
-      #- get: 50m-during-midnight-hour
-      #  trigger: true
+      - get: 50m-during-midnight-hour
+        trigger: true
       - get: mattermost-integrator-github
       - get: elpaaso-pipelines
       - task: release-new-version

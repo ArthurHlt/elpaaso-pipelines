@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 CW=$PWD
 
 actual_version=$(curl -s http://www.mattermost.org/download/ | pup '.entry-content h2' | grep Mattermost | awk '{print $4}')
