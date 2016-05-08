@@ -11,7 +11,9 @@ fi
 semver=$(echo "$actual_version" | sed 's/v//g')
 echo "$semver" | grep -Eq "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}$"
 if [ $? -ne 0 ]; then
-    echo "Parsed version do not follow semantic versioning, check http://www.mattermost.org/download page and fix the parsing"
+    message="[mattermost] Parsed version do not follow semantic versioning, check http://www.mattermost.org/download page and fix the parsing"
+    echo "$message"
+    notifslack --url $slack_url -c $slack_channel -u $slack_username -i $slack_icon "$message"
     exit 1
 fi
 echo "$semver" | grep -Eq "^$accepted_version$"
