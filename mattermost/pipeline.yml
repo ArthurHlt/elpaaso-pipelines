@@ -22,9 +22,8 @@ resources:
   - name: 50m-during-midnight-hour
     type: time
     source:
-      interval: 50m
-      start: 12:00 AM -0700
-      stop: 1:00 AM -0700
+      start: 12:00 AM +0200
+      stop: 1:00 AM +0200
   - name: mattermost-integrator-github
     type: github-release
     source:
