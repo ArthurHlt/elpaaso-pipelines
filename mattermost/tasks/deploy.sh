@@ -21,6 +21,11 @@ if [ $? -ne 0 ]; then
 fi
 echo "$mattermost_config" > "$BASEDIR/mattermost/config/config.json"
 cd "$BASEDIR/mattermost"
+
+sed -i "" 's/GitLab/Cloud Foundry/g' web/static/i18n/*
+wget https://rawgit.com/cloudfoundry-community/mattermost-cf-integrator/master/cloudfoundryLogo.png
+cp cloudfoundryLogo.png web/static/images/gitlabLogo.png
+
 cat <<EOT > "manifest.yml"
 ---
 #Generated manifest
