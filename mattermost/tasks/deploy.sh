@@ -22,9 +22,9 @@ fi
 echo "$mattermost_config" > "$BASEDIR/mattermost/config/config.json"
 cd "$BASEDIR/mattermost"
 
-sed -i "" 's/GitLab/Cloud Foundry/g' web/static/i18n/*
+sed -i "" 's/GitLab/Cloud Foundry/g' webapp/dist/i18n/*
 wget https://rawgit.com/cloudfoundry-community/mattermost-cf-integrator/master/cloudfoundryLogo.png
-cp cloudfoundryLogo.png web/static/images/gitlabLogo.png
+cp cloudfoundryLogo.png webapp/dist/files/f78b8bf800e4836d75ce79d947a235c4.png
 
 cat <<EOT > "manifest.yml"
 ---
