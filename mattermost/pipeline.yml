@@ -54,7 +54,7 @@ jobs:
       - task: release-new-version
         file: elpaaso-pipelines/mattermost/tasks/check-version.yml
         params:
-          accepted_version: "[0-2]{1}\\.[0-9]{1,2}\\.[0-9]{1,2}"
+          accepted_version: "[0-3]{1}\\.[0-9]{1,2}\\.[0-9]{1,2}"
           slack_url: {{slack-url}}
           slack_channel: {{slack-channel}}
           slack_username: Concourse
