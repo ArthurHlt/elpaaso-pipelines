@@ -19,4 +19,3 @@ RUN curl -L https://github.com/ArthurHlt/notifslack/releases/download/v1.0.0/not
 RUN curl -L https://github.com/ArthurHlt/echo-colors/releases/download/v1.0.0/echoc_linux_amd64 -o echoc \
     && chmod +x echoc \
     && mv echoc /usr/bin
-
