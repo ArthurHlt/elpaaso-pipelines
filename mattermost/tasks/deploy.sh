@@ -36,4 +36,7 @@ buildpack: binary_buildpack
 services:
 - $service_name
 EOT
+if [ "x${s3_service_name}" == "x" ]; then 
+	echo "- ${s3_service_name}" >> "manifest.yml"
+fi
 cd -
