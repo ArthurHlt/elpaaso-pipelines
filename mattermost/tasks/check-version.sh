@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 CW=$PWD
 
-actual_version=$(curl -s http://www.mattermost.org/download/ | pup '.entry-content h2' | grep Mattermost | awk '{print $5}')
+actual_version=$(curl -s https://www.mattermost.org/download/ | pup '.entry-content h2' | grep Mattermost | awk '{print $5}')
 current_version=$(head -n 1 "$CW/mattermost-integrator-github/tag")
 if [ "$actual_version" = "$current_version" ]; then
     echoc "[yellow]You should don't care about this error."
@@ -11,7 +11,7 @@ fi
 semver=$(echo "$actual_version" | sed 's/v//g')
 echo "$semver" | grep -Eq "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}$"
 if [ $? -ne 0 ]; then
-    message="[mattermost] Parsed version do not follow semantic versioning, check http://www.mattermost.org/download page and fix the parsing"
+    message="[mattermost] Parsed version do not follow semantic versioning, check https://www.mattermost.org/download page and fix the parsing"
     echo "$message"
     notifslack --url $slack_url -c $slack_channel -u $slack_username -i $slack_icon "$message"
     exit 1

@@ -33,7 +33,7 @@ resources:
   - name: elpaaso-pipelines
     type: git
     source:
-      uri: https://github.com/ArthurHlt/elpaaso-pipelines.git
+      uri: https://github.com/Orange-OpenSource/elpaaso-pipelines.git
       branch: master
   - name: deploy-mattermost
     type: cf
