@@ -24,7 +24,7 @@ cd "$BASEDIR/mattermost"
 
 sed -i "" 's/GitLab/Cloud Foundry/g' webapp/dist/i18n/*
 wget https://rawgit.com/cloudfoundry-community/mattermost-cf-integrator/master/cloudfoundryLogo.png
-cp cloudfoundryLogo.png webapp/dist/files/f78b8bf800e4836d75ce79d947a235c4.png
+cp cloudfoundryLogo.png webapp/dist/files/bf61680806a56e50a7857eeeea863f01.png
 
 cat <<EOT > "manifest.yml"
 ---
