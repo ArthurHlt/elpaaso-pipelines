@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 CW=$PWD
 
-actual_version=$(curl -s https://www.mattermost.org/download/ | pup '.entry-content h2' | grep Mattermost | awk '{print $5}')
+actual_version=$(curl -s http://about.mattermost.com/download/ | pup '.p1.s1' | grep Release | awk '{print $3}')
 current_version=$(head -n 1 "$CW/mattermost-integrator-github/tag")
 if [ "$actual_version" = "$current_version" ]; then
     echoc "[yellow]You should don't care about this error."
