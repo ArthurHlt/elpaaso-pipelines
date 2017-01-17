@@ -40,4 +40,7 @@ EOT
 if [ "x${s3_service_name}" != "x" ]; then 
 	echo "- ${s3_service_name}" >> "manifest.yml"
 fi
+if [ "x${cf_domain}" != "x" ]; then
+	echo "domain: ${cf_domain}" >> "manifest.yml"
+fi
 cd -

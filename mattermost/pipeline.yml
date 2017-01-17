@@ -90,6 +90,7 @@ jobs:
           cf_password: {{cf-password}}
           cf_organization: {{cf-org}}
           cf_space: {{cf-space}}
+          cf_domain: {{cf-domain}}
           s3_service_name: {{s3-service-name}} # remove this line if you don't want to use an s3 service
       - put: deploy-mattermost
         params:
